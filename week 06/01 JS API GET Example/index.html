@@ -10,8 +10,30 @@
 	<p> OpenWeatherMap API Example </p>
 	<p>-----------------------------------------------</p>
 
+	<h2>Popular Places:</h2>
 	<!-- Wrapper for easy finding and manipulating with JS -->
 	<div id="tableWrapper"></div>
+	
+	
+	<form>
+		<fieldset>
+			<legend>Where would you like to see the weather for?</legend>
+			<input type="text" value="94588" name="weatherZip" id="weatherZip">
+			<input type="text" value="New York,NY" name="weatherCity" id="weatherCity">
+			<br>
+			<input type="submit" value="Look Up By Zip" id="zipSubmit">
+			<input type="submit" value="Look Up By City" id="citySubmit">
+	
+		</fieldset>
+	
+	</form>
+	
+	<br>
+	
+	<h2>Weather:</h2>
+	<h4>Location: </h4><span id="inputMethod"></span>
+	<br>
+	<h4>Temperature: </h4><span id="temperature"></span>
 	
 	<!-- Check the script file for more details -->
 	<script src="script.js"></script>
