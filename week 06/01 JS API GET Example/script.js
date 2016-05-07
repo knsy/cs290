@@ -67,14 +67,22 @@ document.getElementById('zipSubmit').addEventListener('click',function(event){
 	url += "&appid="; 
 	url += apiKey;
 	
-	apiReq.open('GET', url, false);
-	apiReq.send(null);
+	apiReq.open('GET', url, true);
+	apiReq.addEventListener('load', function(){
+		if(apiReq.status >= 200 && apiReq.status < 400){
+			apiResp = JSON.parse(apiReq.responseText);
+			
+			//display the response
+			document.getElementById('temperature').textContent = apiResp.main.temp + " degrees C";
+		}else{
+			console.log("Error: " + apiReq.statusText);
+		}})
 	
-	apiResp = JSON.parse(apiReq.responseText);
+	apiReq.send(null);
 	
 	//display the parsed temperature for the zipcode we looked for
 	document.getElementById('inputMethod').textContent = document.getElementById('weatherZip').value;
-	document.getElementById('temperature').textContent = apiResp.main.temp + " degrees C";
+
 	
 	//make sure that the button doesnt refresh the page
 	event.preventDefault();
@@ -88,14 +96,24 @@ document.getElementById('citySubmit').addEventListener('click', function(event){
 	url += "&appid="; 
 	url += apiKey;
 	
-	apiReq.open('GET', url, false);
+	apiReq.open('GET', url, true);
+	apiReq.addEventListener('load', function(){
+		if(apiReq.status >= 200 && apiReq.status < 400){
+			apiResp = JSON.parse(apiReq.responseText);
+			
+			//display the temp
+			document.getElementById('temperature').textContent = apiResp.main.temp + " degrees C";
+		}else{
+			console.log("Error: " + apiReq.statusText);
+		}
+	
+	})
 	apiReq.send(null);
 	
-	apiResp = JSON.parse(apiReq.responseText);
 	
 	 //display the temperature for the city we looked for.
 	document.getElementById('inputMethod').textContent = document.getElementById('weatherCity').value;
-	document.getElementById('temperature').textContent = apiResp.main.temp + " degrees C";
+	
 	
 	//make sure that the button doesnt refresh the page
 	event.preventDefault();
