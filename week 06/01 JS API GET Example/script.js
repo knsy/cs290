@@ -26,7 +26,11 @@ for(var i = 0; i < 3; i++){
 	url += apiKey;
 	
 	//GET the data back based on the URL we built up.
+	//Keeping this as a synchronous requequest as an example.
 	apiReq.open("GET",url, false);
+	
+	//if we were sending a POST request, this is where the body would be 
+	//stringified and appended
 	apiReq.send(null);
 	apiResp = (JSON.parse(apiReq.responseText));
 	
@@ -67,7 +71,10 @@ document.getElementById('zipSubmit').addEventListener('click',function(event){
 	url += "&appid="; 
 	url += apiKey;
 	
+	//asynchronous request.
 	apiReq.open('GET', url, true);
+	
+	//adding an event listener before sending stuff over.
 	apiReq.addEventListener('load', function(){
 		if(apiReq.status >= 200 && apiReq.status < 400){
 			apiResp = JSON.parse(apiReq.responseText);
@@ -75,6 +82,7 @@ document.getElementById('zipSubmit').addEventListener('click',function(event){
 			//display the response
 			document.getElementById('temperature').textContent = apiResp.main.temp + " degrees C";
 		}else{
+			//if there was an error, no parsing and just console the error text
 			console.log("Error: " + apiReq.statusText);
 		}})
 	
@@ -89,15 +97,22 @@ document.getElementById('zipSubmit').addEventListener('click',function(event){
 });
 
 //search by city name
+//similar structure as the request above.
 document.getElementById('citySubmit').addEventListener('click', function(event){
-	var url = "http://api.openweathermap.org/data/2.5/weather?zip="
+	//these should provavly be collapsed into a single line, but for clarity
+	//broken up into many	var url = "http://api.openweathermap.org/data/2.5/weather?zip="
 	url += document.getElementById('weatherCity').value;
 	url += "&units=metric";	 //In case we need to change to Imperial. Default is Kelvin.
 	url += "&appid="; 
 	url += apiKey;
 	
+	
+	//sending an asynchronous request
 	apiReq.open('GET', url, true);
 	apiReq.addEventListener('load', function(){
+		//making sure that the status code is between 200 and 400.
+		//this signifies that everything was successful most likely.
+		//>400 is generally errors.
 		if(apiReq.status >= 200 && apiReq.status < 400){
 			apiResp = JSON.parse(apiReq.responseText);
 			
