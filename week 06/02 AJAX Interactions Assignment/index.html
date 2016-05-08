@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>cs290 AJAX Interactions Assignment.</title>
+  <!-- <link rel="stylesheet" href="style.css" type="text/css"> -->
+ </head>
+ <body>
+
+	<h2>OpenWeatherMap API Example:</h2>
+
+	<form>
+		<fieldset>
+			<legend>Where would you like to see the weather for?</legend>
+			
+			<!-- Text Field for inputting the Zipcode -->
+			<input type="text" placeholder="94588" name="weatherZip" id="weatherZip">
+			
+			<span> or </span>
+			
+			<!-- Text Field for inputting the City Name -->
+			<input type="text" placeholder="New York,NY" name="weatherCity" id="weatherCity">
+			
+			<input type="submit" value="Get Weather" id="getWeather">
+
+	
+		</fieldset>
+	
+	</form>
+		
+	<br>
+	
+	<table border="solid">
+		<tr>
+		<th><h3>Weather.</h3></th>
+		<th><h4>Location: </h4></th>
+		<th><h4>Temperature: </h4></th>
+		<th><h4>Humidity:</h4></th>
+		</tr>
+	
+		<tr>
+		<td><img src="" id="weatherImg"></td>
+		<td><span id="city"></span></td>
+		<td><span id="temperature"></span></td>
+		<td><span id="humidity"></span></td>
+		</tr>
+	</table>
+	
+	
+
+	
+	
+	
+	<br>
+	
+		<!--Here we will try a POST request -->
+	<form>
+		<fieldset>
+		<legend> Submit text via POST to http://httpbin.org/post and get it back.</legend>
+		
+		<input type="text" value="Sample Text..." name="httpinInput" id="httpbinInput">
+		<br>
+		<input type="submit" value="POST Submit" id="postSubmit">
+		
+		
+		</fieldset>
+	
+	
+	</form>
+	
+	<p>Data got back from httpbin:</p>
+	<span id="httpbinReturn"></span>
+	
+	<!-- Check the script file for more details -->
+	<script src="script.js"></script>
+
+	
+ </body>
+</html>
