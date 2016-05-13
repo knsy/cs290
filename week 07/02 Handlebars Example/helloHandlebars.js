@@ -8,7 +8,8 @@ app.set('view engine', 'handlebars');
 app.set('port', 3000);
 
 function numberContext(){
-	var randNumber = Math.randNumber();
+	var randNumber = {};
+		randNumber.number = Math.randNumber();
 	return randNumber;
 };
 
