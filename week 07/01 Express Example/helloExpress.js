@@ -6,7 +6,7 @@ app.set('port', 3000);
 
 app.get('/', function(req,res){
 	res.type('text/plain');
-	res.send('Welcome to the first page');
+	res.send('Here is a reandom number: ' + generateNum());
 });
 
 app.get('/other',function(req, res){
@@ -30,3 +30,7 @@ app.use(function(err, req, res, next){
 app.listen(app.get('port'), function(){
   console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
 });
+
+function generateNum(){
+	return Math.random();
+};
