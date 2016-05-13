@@ -9,7 +9,7 @@ app.set('port', 3000);
 
 function numberContext(){
 	var randNumber = {};
-		randNumber.number = Math.randNumber();
+		randNumber.number = Math.random();
 	return randNumber;
 };
 
