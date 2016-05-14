@@ -10,10 +10,10 @@ app.set('port', 3000);
 //processing the GET requests
 app.get('/', function(req,res){
 	var getValues = [];
-	for(var entry in req.values){
-	getValues.push({"name" : entry, "value" : req.query[entry]});		
+	for(var entry in req.query){
+		getValues.push({"name" : entry, "value" : req.query[entry]});		
 	}
-	
+	console.log(getValues);
 	var getContext = {};
 	getContext.entries = getValues;
 	
