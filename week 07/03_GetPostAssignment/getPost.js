@@ -9,7 +9,7 @@ app.set('port', 3000);
 
 //processing the GET requests
 app.get('/', function(req,res){
-	getValues = [];
+	var getValues = [];
 	for(var entry in req.values){
 	getValues.push({"name" : entry, "value" : req.query[entry]});		
 	}
