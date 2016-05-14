@@ -13,7 +13,7 @@ function numberContext(){
 	return randNumber;
 };
 
-app.get(function(req,res){
+app.get('/', function(req,res){
   res.render('getPage', numberContext());
 });
 
