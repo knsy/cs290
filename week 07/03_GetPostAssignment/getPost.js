@@ -7,21 +7,30 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set('port', 3000);
 
-function numberContext(){
-	var randNumber = {};
-		randNumber.number = Math.random();
-	return randNumber;
-};
-
+//processing the GET requests
 app.get('/', function(req,res){
+	getValues = [];
+	for(var entry in req.values){
+	getValues.push({"name" : entry, "value" : req.query[entry]});		
+	}
+	
+	var getContext = {};
+	getContext.entries = gatValues;
+	
+  res.render('getPage', getContext);
+});
+
+app.post('/', function(req,res){
   res.render('getPage', numberContext());
 });
 
+//404 page if no page found
 app.use(function(req,res){
   res.status(404);
   res.render('404');
 });
 
+//500 page if everything broked on the server
 app.use(function(err, req, res, next){
   console.error(err.stack);
   res.type('plain/text');
