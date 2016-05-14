@@ -11,7 +11,7 @@ app.set('port', 3000);
 
 //setup POST body processing
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bosyParser.json());
+app.use(bodyParser.json());
 
 //processing the GET requests
 app.get('/', function(req,res){
