@@ -15,7 +15,7 @@ app.get('/', function(req,res){
 	}
 	
 	var getContext = {};
-	getContext.entries = gatValues;
+	getContext.entries = getValues;
 	
   res.render('getPage', getContext);
 });
