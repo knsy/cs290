@@ -1,7 +1,10 @@
 <h1>GET Request Received</h1>
 
-<ul>
+<table>
 	{{#each entries}}
-		<li>{{this.name}} : {{this.value}}
+	<tr>
+		<td>{{this.name}}</td> 
+		<td>{{this.value}}</td>
+	</tr>	
 	{{/each}}
-</ul>
+</table>

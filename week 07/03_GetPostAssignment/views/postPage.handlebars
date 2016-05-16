@@ -1,8 +1,10 @@
 <h1>POST Request Received</h1>
 
-<ul>
-{{#each entries}}
-	<li> {{this.name}} : {{this.value}}
-{{/each}}
-
-</ul>
+<table>
+	{{#each entries}}
+	<tr>
+		<td>{{this.name}}</td> 
+		<td>{{this.value}}</td>
+	</tr>	
+	{{/each}}
+</table>
