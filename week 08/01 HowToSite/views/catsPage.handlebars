@@ -1,0 +1,108 @@
+<div id="navi"><h4><a name="content">First Contact</a></h4></div>
+	
+	<div id="content_border">
+	<div id="content">	
+		
+		<h3>Cats!:</h3>
+		<h4>What do cats have to do with this?</h4>
+				<p>At this point we are getting a response from imgur, which is amazing<br>
+				 although it might not look like much. So, lets step it up and try to get <br>
+				 an actual picture from imgur... Might as well be a cat picture. : D<br>
+				 but first we need a couple of pre-requisites.</p>
+<br>
+		<h4>Debug Console:</h4>
+				<p>So, at this point we are actually getting all the info from imgur that we need.<br>
+				 However we are not really looking at anything other than the status code.<br>
+				 So, I really hope that you are in firefox, although Chrome has the same features,<br>
+				 just laid out differently.<br>
+				 So, In firefox, press Ctrl+Shift+k. Altrnatively, you can go to:<br> 
+				 Tools->Web Developer->Web Console.
+				 This should pop up something like this at the bottom of the browser window:</p>
+		
+		<h3>Firefox Web Console:</h3>
+		<div class="img-desc">
+			<img src="files/cats01.jpg" alt="firefox's web console." /></h1>
+		</div>
+		
+		<p>Woo... So 1337... Much hack...<br>
+		So, the code we setup, sends the response from imgur's servers into this here console.<br>
+		The gread thing about that is that we can explore it and see what it is exactly that<br>
+		imgur sent us. For this we need to know about JSON...</p>
+<br>
+
+		<h4>JSON:</h4>
+				<p>JSON stands for "Jave Script Object Notation". Basically, it is a standard<br>
+				 for sending over data. The main thing that concerns us right now is that it <br>
+				 specifies that everything gets sent over in "Key":"Value" pairs. So, if we look<br>
+				 at the thing in the console, this "Object", we can see that there is a bunch of <br>
+				 pairs specified within it....<br>
+				 <i>data: Object</i><br>
+				 <i>success: true</i><br>
+				 <i>status: 200...</i><br>
+				 <br>
+				 ...and here is that status that we used previously to see whether our request was successful.<br>
+				 If you are curious, <a href="http://api.imgur.com/models/tag">here</a> is a detailed explanataion of the structure<br>
+				 of the object we got back as well as some other ones that you can request from imgur.</p>	
+
+<br>				 
+
+		<h4>Cats!:</h4>
+				<p>I promised you cats, and we are almost there.<br>
+				So, as you might have noticed, in our console object, the data is also set to an "object"<br>
+				AND it is clickable. So we click on it and the console displays what is within that data object!<br>				
+				
+				This Data Object is actually a "Gallery" and if you are curious for the meaning of parts of this structure<br>
+				You can click to this link: <a href="http://api.imgur.com/endpoints/gallery">Imgur Gallery Structure</a>
+				
+				A notable items for us is "name": "cats"! Looks familiar.<br>
+				
+				But the thing that we are actually after is in that "items":Array[60]....<br>
+				
+				Ohhh my it is an array of 60 MORE OBJECTS!<br>
+				
+				Almost all the way down now. Each one of those is an Image structure.<br>
+				You can get more detailed info on <a href="http://api.imgur.com/models/image">imgur's image model</a><br>
+				but we only need the "link": field.... That is a URL of... an image... that is tagged with word "cats".<br>
+				If you go to that URL you can verify...
+				
+				</p>
+			
+		<h3>The Whole Way Down:</h3>
+		<div class="img-desc">
+			<img src="files/cats02.jpg" alt="firefox's web console." /></h1>
+		</div>
+		
+		<h4>Damn you Konstantin! Are we going to write any code???</h4>
+				<p>Sure! So, at this point we know about the response we are getting from the imgur API<br>
+				and we know the structure of that response. So... let's get some random pussy... cats.<br>
+				You know the drill, read through comments to see what we changed and why and copy over the index.html</p>
+				
+		<h3>index.html</h3>
+				
+				<span class="img-desc">
+				<iframe width="760px" height="300" src="//jsfiddle.net/yakovenk/cLt5o7cy/embedded/html/" allowfullscreen="allowfullscreen" frameborder="1"></iframe>
+				</span>
+				
+				<p>....and script.js.<br>
+				Don't forget to paste in your API Client ID.</p>
+		
+		<h3>script.js</h3>
+		
+				<span class="img-desc">
+				<iframe width="760px" height="300" src="//jsfiddle.net/yakovenk/cLt5o7cy/embedded/js/" allowfullscreen="allowfullscreen" frameborder="1"></iframe>
+				</span>
+				
+			<p> ....and drop index.html into your favourite browser.</p>
+			
+			<br>
+				
+		<h4>So.... what is going on???</h4>
+				<p>Basically we are grabbing a list of images and galleries from imgur that are tagged as 'cats'<br>
+				then we pick a random item from that list and get a link to it.<br>
+				</p>
+		
+			<h4 class="nextLink"><a href="/beyondCats">Onward >></a> </h4>
+		
+		
+	</div>
+	</div>
