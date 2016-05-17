@@ -39,6 +39,12 @@ p {
 	position:relative;
 }
 
+.center{
+	margin-top:25px;
+	width:100%;
+	text-align:center;
+}
+
 #center ul {
 	font-family:Helvetica, Arial, sans-serif;
 	list-style:none;

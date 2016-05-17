@@ -21,7 +21,24 @@
 				 their behalf, you can send messages to other users... But you have to read up on oAuth.</p>		
 <br>
 		<h4>Sweet.</h4>
-				<p>Yes.</p>							
+				<p>Yes.</p>	
+
+		<h4>Below is a slightly more complicated script for random cat pictures:</h4>
+			<p>This one uses a button to load the images and instead of using the tag<br>
+			it sends a search request to imgur's API search for "cats". Also, we are <br>
+			filtering out any albums because we can't display them and we are only <br>
+			looking around the first page of the results to keep complexity down...<br>
+			Also, it might take a while for the images to load because some are huge....</p>
+		
+		
+		<div class="center"><button id="moreRandomImgur">More Cats!!!</button></div>
+		
+		<div class="img-desc">
+		<img src="" alt="imgur's random image" id="randomImage" width="750px"/></h1>
+		</div>
+		
+		<p>Hopefully this was a nice quick and easy primer on getting something from <br>
+		imgur. Now go and explore the API... or enjoy some more pictures of cats.</p>
 		
 	
 		
@@ -30,3 +47,6 @@
 		
 	</div>
 	</div>
+	
+		<!-- Check the script file for more details -->
+	<script src="imgur.js"></script>
