@@ -7,7 +7,7 @@ var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 //setup handlebars for templated rendering
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
-app.set('port', 3000);
+app.set('port', 3001);
 
 //setup POST body processing
 app.use(bodyParser.urlencoded({ extended: false }));
