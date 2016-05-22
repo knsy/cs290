@@ -1,0 +1,21 @@
+<h1>Hello, {{name}}, here is your todo list:</h1>
+<h2>You have {{toDoCount}} items on your todo list.</h2>
+<form method="post">
+	<input type="text" name="name" id="toDoName"></input>
+	<input type="submit" name="Add Item" value="Add Item"></input>
+</form>
+
+{{#if toDo}}
+<ul>
+	{{#each toDo}}
+	<li>
+		<h4>{{this.name}}</h4>
+		<form method="post">
+			<input type="hidden" name="id" value="{{this.id}}"></input>
+			<input type="submit" name="Done" value="Mark as Done"></input>
+		</form>
+	</li>
+	{{/each}}
+
+</ul>
+{{/if}}
