@@ -1,3 +1,5 @@
+var requestAddr = "http://52.34.125.250:3000/"; //http://localhost:3000/
+
 ////////////////////////////ADD/////////////////////////////////////
 document.getElementById('postAdd').addEventListener('click', function(event){
     var req = new XMLHttpRequest();
@@ -8,7 +10,7 @@ document.getElementById('postAdd').addEventListener('click', function(event){
 	payload.date = document.getElementById('workoutDate').value;
 	payload.lbs = document.getElementById('workoutLbs').checked;
 	
-	req.open('POST', 'http://localhost:3000/insert', true);
+	req.open('POST', requestAddr + 'insert', true);
 	req.setRequestHeader('Content-Type', 'application/json');
 	req.addEventListener('load',function(){
 		 if(req.status >= 200 && req.status < 400){
@@ -38,7 +40,7 @@ document.getElementById('submitEditButton').addEventListener('click', function (
 		payload.date = document.getElementById('workoutDate').value;
 		payload.lbs = document.getElementById('workoutLbs').checked;
 		
-		req.open('POST', 'http://localhost:3000/update', true);
+		req.open('POST', requestAddr + 'update', true);
 		req.setRequestHeader('Content-Type', 'application/json');
 		req.addEventListener('load',function(){
 			 if(req.status >= 200 && req.status < 400){
@@ -71,7 +73,7 @@ function deleteRow(taskNumber){
 	var payload = {};
 	payload.id = taskNumber;
 	
-	req.open('POST', 'http://localhost:3000/delete', true);
+	req.open('POST', requestAddr + 'delete', true);
 	req.setRequestHeader('Content-Type', 'application/json');
 	req.addEventListener('load',function(){
 		 if(req.status >= 200 && req.status < 400){
@@ -95,7 +97,7 @@ function onPageLoadGet(){
 	console.log("body loaded.")
     var req = new XMLHttpRequest();
 
-	req.open('GET', 'http://localhost:3000/getTable', true);
+	req.open('GET', requestAddr + 'getTable', true);
 	req.setRequestHeader('Content-Type', 'application/json');
 	req.addEventListener('load',function(){
 		 if(req.status >= 200 && req.status < 400){
@@ -210,7 +212,7 @@ function bindDeleteButtons(deleteButton){
 		var payload = {};
 
 		payload.id = this.parentNode.name;
-		req.open('POST', 'http://localhost:3000/delete', true);
+		req.open('POST', requestAddr + 'delete', true);
 		req.setRequestHeader('Content-Type', 'application/json');
 		req.addEventListener('load',function(){
 			 if(req.status >= 200 && req.status < 400){
@@ -240,7 +242,7 @@ function bindEditButtons(editButton){
 			var payload = {};
 
 			payload.id = this.parentNode.name;
-			req.open('POST', 'http://localhost:3000/getId', true);
+			req.open('POST', requestAddr + 'getId', true);
 			req.setRequestHeader('Content-Type', 'application/json');
 			req.addEventListener('load',function(){
 				 if(req.status >= 200 && req.status < 400){
