@@ -1,18 +1,23 @@
-<h2>Hey Brocicle! Here is your todo list:</h2>
+<h2>Hey Brocicle! Do you even lift?</h2>
 
 <form>
-<fieldset>
-	<legend>Add a new exercise:</legend>
+<fieldset id="workoutInput">
+	<legend id="workoutForm">Add a new exercise:</legend>
+		<input type="number" name="workoutId" id="workoutId" hidden="true"/>
 	<label>Name:</label>
 		<input type="text" name="workoutName" id="workoutName" value="Exercise"/>
 	<label>Reps:</label>
 		<input type="number" name="workoutReps" id="workoutReps" value="0" />
 	<label>Weight:</label>
 		<input type="number" name="workoutWeight" id="workoutWeight" value="0"/>
+	<label>In lbs?</label>
+		<input type="checkbox" name="workoutLbs" id="workoutLbs"/>
 	<label>Date:</label>
 		<input type="date" name="workoutDate" id="workoutDate" value="2011-11-01"/>
 		
 		<input type="button" value="Add" id="postAdd" />
+		
+		<input type="button" value="Submit Edit" id="submitEditButton" hidden="true" />
 	
 </fieldset>
 </form>
@@ -24,6 +29,6 @@
 </table>
 
 
-<script src="testClient.js"></script>
+<script src="workoutTrackerClient.js"></script>
 
 
