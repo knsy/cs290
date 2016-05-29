@@ -25,51 +25,12 @@ app.use(session({secret:'TheSecretThatShouldBeSecret'}));
 app.get('/', function(req,res){
 	var getContext = {};
 	
-	//if there is no session, show main page.
-	if(!req.session.name){
-		res.render('newSessionPage', getContext);
-		return;
-	}
-	getContext.name = req.session.name;
-	getContext.toDoCount = req.session.toDo.length || 0;
-	getContext.toDo = req.session.toDo || [];
-	
-	//for debug
-	console.log(context.toDo);
 	res.render('workoutPage', getContext);
 });
 
 app.post('/', function(req,res){
 	var getContext = {};
 	
-	if(req.body['New List']){
-		req.session.name = req.body.name;
-		req.session.toDo = [];
-		req.session.curId = 0;
-	}
-	
-	//if the is no session, ask for the name to start one
-	if(!req.session.name){
-		res.render('newSessionPage', getContext);
-		return;
-	}
-	
-	if(req.body['Add Item']){
-		req.session.toDo.push({"name":req.body.name, "id":req.session.curId});
-		req.session.curId++;
-	}
-	
-	if(req.body['Done']){
-		req.session.toDo = req.session.toDo.filter(function(e){
-			return e.id != req.body.id;
-		})
-	}
-	
-	getContext.name = req.session.name;
-	getContext.toDoCount = req.session.toDo.length;
-	getContext.toDo = req.session.toDo;
-	
-	console.log(getContext.toDo);
 	res.render('workoutPage', getContext);
 })
 
@@ -87,9 +48,8 @@ app.get('/getTable', function(req,res,next){
       next(err);
       return;
     }
-	console.log(rows);
-    context.table = JSON.stringify(rows);
-	res.send(context.table);
+    getContext.table = JSON.stringify(rows);
+	res.send(getContext.table);
   });
 });
 	
@@ -104,17 +64,67 @@ app.get('/insert',function(req,res,next){
       return;
     }
     context.results = "Inserted id " + result.insertId;
-    res.render('home',context);
+    //res.render('',context);
+	res.send(JSON.stringify(context));
   });
 });
 
-app.post('/testPost', function(req,res){
+app.post('/delete',function(req,res,next){
 	var getContext = {};
 	if(req.body){
 		console.log(req.body);
 	}
-	rows = {"jesus":"labia"};
-	res.send(JSON.stringify(rows));
+	//delete value
+	//var parsedQuery = JSON.parse(req.body);
+	//console.log(parsedQuery);
+	
+	mysql.pool.query("DELETE FROM workouts WHERE id=?", [req.body.id], function(err, result){
+    if(err){
+      next(err);
+      return;
+    }
+  });
+	//return new table
+	mysql.pool.query("SELECT * FROM workouts", function(err, rows, fields){
+    if(err){
+      next(err);
+      return;
+    }
+
+    getContext.table = JSON.stringify(rows);
+	console.log(getContext.table);
+	res.send(getContext.table);
+	
+  });
+});
+
+app.post('/insert', function(req,res,next){
+	var getContext = {};
+	if(req.body){
+		console.log(req.body);
+	}
+	//add value
+	//var parsedQuery = JSON.parse(req.body);
+	//console.log(parsedQuery);
+	mysql.pool.query("INSERT INTO workouts SET name=?, reps=?, weight=?, date=?", [req.body.name, req.body.reps, req.body.weight, req.body.date], function(err, result){
+    if(err){
+      next(err);
+      return;
+    }
+  });
+	//return new table
+	mysql.pool.query("SELECT * FROM workouts", function(err, rows, fields){
+    if(err){
+      next(err);
+      return;
+    }
+
+    getContext.table = JSON.stringify(rows);
+	console.log(getContext.table);
+	res.send(getContext.table);
+	
+  });
+	
 });
 
 //RESET TABLE PAGE
@@ -131,14 +141,9 @@ app.get('/reset-table',function(req,res,next){
     mysql.pool.query(createString, function(err){
       
       console.log("Table reset");
+	  res.render('testPage', context);
 	  
     });
-	
-	mysql.pool.query("INSERT INTO workouts (`name`) VALUES ('testName')", function(err,result){
-      context.results = result.insertId;
-      console.log(result.insertId);
-	  res.render('testPage', context);
-	});
  });
 });
 
@@ -159,3 +164,5 @@ app.use(function(err, req, res, next){
 app.listen(app.get('port'), function(){
   console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
 });
+
+//sample reply from the db[{"id":1,"name":"jesus","done":null,"due":null},{"id":2,"name":"killMysql","done":null,"due":null}
