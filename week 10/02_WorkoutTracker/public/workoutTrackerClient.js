@@ -31,7 +31,7 @@ document.getElementById('postAdd').addEventListener('click', function(event){
 
 		}
 		else{
-			document.getElementById('nameError').textConent = "Really? Your Exercise has no name?"
+			document.getElementById('nameError').textContent = "Really? Your Exercise has no name?"
 		}
 		
 		event.preventDefault();
@@ -74,7 +74,7 @@ document.getElementById('submitEditButton').addEventListener('click', function (
 			//console.log("sent: " + payload);
 			
 		}else{
-			document.getElementById('nameError').textConent = "Really? Your Exercise has no name?"
+			document.getElementById('nameError').textContent = "Really? Your Exercise has no name?"
 
 		}
 		event.preventDefault();
