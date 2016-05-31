@@ -4,7 +4,7 @@ var requestAddr = "http://52.34.125.250:3000/";
 ////////////////////////////ADD/////////////////////////////////////
 document.getElementById('postAdd').addEventListener('click', function(event){
     if (document.getElementById('workoutName').value != ""){
-		document.getElementById('nameError').textConent = "";
+		document.getElementById('nameError').textContent = "";
 		var req = new XMLHttpRequest();
 		var payload = {};
 		payload.name = document.getElementById('workoutName').value;
@@ -40,7 +40,7 @@ document.getElementById('postAdd').addEventListener('click', function(event){
 //////////////////////////EDIT SUBMIT/////////////////////////////
 document.getElementById('submitEditButton').addEventListener('click', function (event){
 		if (document.getElementById('workoutName').value != ""){
-			document.getElementById('nameError').textConent = "";
+			document.getElementById('nameError').textContent = "";
 			var req = new XMLHttpRequest();
 			var payload = {};
 			
