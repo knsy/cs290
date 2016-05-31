@@ -1,4 +1,5 @@
-var requestAddr = "http://52.34.125.250:3000/"; //http://localhost:3000/
+//var requestAddr = "http://52.34.125.250:3000/"; 
+var requestAddr = "http://localhost:3000/";
 
 ////////////////////////////ADD/////////////////////////////////////
 document.getElementById('postAdd').addEventListener('click', function(event){
