@@ -3,65 +3,80 @@ var requestAddr = "http://localhost:3000/";
 
 ////////////////////////////ADD/////////////////////////////////////
 document.getElementById('postAdd').addEventListener('click', function(event){
-    var req = new XMLHttpRequest();
-	var payload = {};
-	payload.name = document.getElementById('workoutName').value;
-	payload.reps = document.getElementById('workoutReps').value;
-	payload.weight = document.getElementById('workoutWeight').value;
-	payload.date = document.getElementById('workoutDate').value;
-	payload.lbs = document.getElementById('workoutLbs').checked;
-	
-	req.open('POST', requestAddr + 'insert', true);
-	req.setRequestHeader('Content-Type', 'application/json');
-	req.addEventListener('load',function(){
-		 if(req.status >= 200 && req.status < 400){
-			 var response = JSON.parse(req.response);
-			 //console.log(response);
-			 
-			 buildTable(response);
-			 
-	} else {
-		 console.log("Error in network request: " + request.statusText);
-	}
-	});
-	req.send(JSON.stringify(payload));
-	//console.log("sent: " + payload);
-	event.preventDefault();
-});
-
-//////////////////////////EDIT SUBMIT/////////////////////////////
-document.getElementById('submitEditButton').addEventListener('click', function (event){
+    if (document.getElementById('workoutName').value != ""){
+		document.getElementById('nameError').textConent = "";
 		var req = new XMLHttpRequest();
 		var payload = {};
-		
-		payload.id = document.getElementById('workoutId').value;
 		payload.name = document.getElementById('workoutName').value;
 		payload.reps = document.getElementById('workoutReps').value;
 		payload.weight = document.getElementById('workoutWeight').value;
 		payload.date = document.getElementById('workoutDate').value;
 		payload.lbs = document.getElementById('workoutLbs').checked;
 		
-		req.open('POST', requestAddr + 'update', true);
+		req.open('POST', requestAddr + 'insert', true);
 		req.setRequestHeader('Content-Type', 'application/json');
 		req.addEventListener('load',function(){
 			 if(req.status >= 200 && req.status < 400){
 				 var response = JSON.parse(req.response);
 				 //console.log(response);
 				 
-				 //RETURN INPUT BOX TO NORMAL!
-				//hide Add btn, show SubmitEdit btn
-				document.getElementById('postAdd').hidden = false;
-				document.getElementById("submitEditButton").hidden = true;
-				document.getElementById('workoutForm').textContent = "Add Exercise:";
-			 
 				 buildTable(response);
 				 
 		} else {
-			 console.log("Error in network request: " + req.statusText);
+			 console.log("Error in network request: " + request.statusText);
 		}
 		});
 		req.send(JSON.stringify(payload));
 		//console.log("sent: " + payload);
+
+		}
+		else{
+			document.getElementById('nameError').textConent = "Really? Your Exercise has no name?"
+		}
+		
+		event.preventDefault();
+});
+
+//////////////////////////EDIT SUBMIT/////////////////////////////
+document.getElementById('submitEditButton').addEventListener('click', function (event){
+		if (document.getElementById('workoutName').value != ""){
+			document.getElementById('nameError').textConent = "";
+			var req = new XMLHttpRequest();
+			var payload = {};
+			
+			payload.id = document.getElementById('workoutId').value;
+			payload.name = document.getElementById('workoutName').value;
+			payload.reps = document.getElementById('workoutReps').value;
+			payload.weight = document.getElementById('workoutWeight').value;
+			payload.date = document.getElementById('workoutDate').value;
+			payload.lbs = document.getElementById('workoutLbs').checked;
+			
+			req.open('POST', requestAddr + 'update', true);
+			req.setRequestHeader('Content-Type', 'application/json');
+			req.addEventListener('load',function(){
+				 if(req.status >= 200 && req.status < 400){
+					 var response = JSON.parse(req.response);
+					 //console.log(response);
+					 
+					 //RETURN INPUT BOX TO NORMAL!
+					//hide Add btn, show SubmitEdit btn
+					document.getElementById('postAdd').hidden = false;
+					document.getElementById("submitEditButton").hidden = true;
+					document.getElementById('workoutForm').textContent = "Add Exercise:";
+				 
+					 buildTable(response);
+					 
+			} else {
+				 console.log("Error in network request: " + req.statusText);
+			}
+			});
+			req.send(JSON.stringify(payload));
+			//console.log("sent: " + payload);
+			
+		}else{
+			document.getElementById('nameError').textConent = "Really? Your Exercise has no name?"
+
+		}
 		event.preventDefault();
 }
 );
