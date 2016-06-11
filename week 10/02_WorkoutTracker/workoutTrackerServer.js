@@ -45,7 +45,8 @@ app.get('/getTable', function(req,res,next){
 	res.send(getContext.table);
   });
 });
-	
+
+//takes the ID and returns the entry with that ID.	
 app.post('/getId',function(req,res,next){
 	var getContext = {};
 	if(req.body){
@@ -69,6 +70,7 @@ app.post('/getId',function(req,res,next){
 
 });
 
+//takes the ID and deletes it from the table.
 app.post('/delete',function(req,res,next){
 	var getContext = {};
 	if(req.body){
@@ -101,6 +103,7 @@ app.post('/delete',function(req,res,next){
 
 });
 
+//takes name,reps,weight,date, and lbs and inserts a new entry into the table
 app.post('/insert', function(req,res,next){
 	var getContext = {};
 	if(req.body){
@@ -130,6 +133,8 @@ app.post('/insert', function(req,res,next){
   });	
 });
 
+//takes and ID and any fields that changed and updates them.
+//if no change was made, old values remain.
 app.post('/update',function(req,res,next){
 	var getContext = {};
 	if(req.body){

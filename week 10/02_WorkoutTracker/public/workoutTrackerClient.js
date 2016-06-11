@@ -1,3 +1,4 @@
+//addresses for local testing and testing on the server.
 var requestAddr = "http://52.34.125.250:3000/"; 
 //var requestAddr = "http://localhost:3000/";
 
@@ -7,6 +8,7 @@ document.getElementById('postAdd').addEventListener('click', function(event){
 		document.getElementById('nameError').textContent = "";
 		var req = new XMLHttpRequest();
 		var payload = {};
+		//get stuff from the form and add it to the POST.
 		payload.name = document.getElementById('workoutName').value;
 		payload.reps = document.getElementById('workoutReps').value;
 		payload.weight = document.getElementById('workoutWeight').value;
@@ -44,6 +46,7 @@ document.getElementById('submitEditButton').addEventListener('click', function (
 			var req = new XMLHttpRequest();
 			var payload = {};
 			
+			//get stuff from the form and add it to the POST.
 			payload.id = document.getElementById('workoutId').value;
 			payload.name = document.getElementById('workoutName').value;
 			payload.reps = document.getElementById('workoutReps').value;
@@ -137,15 +140,18 @@ onPageLoadGet();
 function buildTable(response){
 	var table = document.getElementById("workoutTable");
 	
+	//clean old table
 	while(table.firstChild){
 		table.removeChild(table.firstChild);
 	}
 	
 	console.log(response);
 	
+	//add new items to the table.
 	for(var row = 0; row <= response.length; row++){
 		var newTableRow = document.createElement("tr");
 		if(row == 0){
+				//build the header.
 				var newHeader1 = document.createElement("th");
 				newHeader1.textContent = "Name";
 				newTableRow.appendChild(newHeader1);
@@ -166,16 +172,21 @@ function buildTable(response){
 				newHeader5.textContent = "lb?";
 				newTableRow.appendChild(newHeader5);
 		}else{
+			//fill the body from the request one row at a time
+			//and tack it onto the table.
 			for(var cell in response[row - 1]){
 				if(!response[row - 1].hasOwnProperty(cell)) {
 					continue;
 				}
 				
+				//we don't add the id to the table,
+				//but to keep track of it we add it as a name to the 
+				//row.
 				if(cell == 'id'){
 					newTableRow.name = response[row - 1][cell];
 				}else if(cell == 'date'){
 					//since the mysql date is a fucking atrocity
-					//that includes time, we trim the time out.
+					//that includes weird time, we trim the time out.
 					var newTableCell = document.createElement("td");
 					var dateLength = 10;
 					var fullDate = response[row - 1][cell];
@@ -186,6 +197,7 @@ function buildTable(response){
 					}
 					newTableRow.appendChild(newTableCell);
 				}else{
+					//for all normal cells, not ID or DATE.
 					var newTableCell = document.createElement("td");
 					newTableCell.textContent = response[row - 1][cell];
 					if(response[row - 1][cell] == null){
@@ -219,6 +231,7 @@ function buildTable(response){
 	bindEditButtons(editButtons);
 }
 
+//bind the actions to the dynamically generated buttons.
 function bindDeleteButtons(deleteButton){	
 	
 	for (var i = 0; i < deleteButton.length; i++) {
@@ -249,6 +262,7 @@ function bindDeleteButtons(deleteButton){
 }
 }
 
+//bind the actions to the dynamically generated buttons.
 function bindEditButtons(editButton){	
 	
 	for (var i = 0; i < editButton.length; i++) {
@@ -264,7 +278,7 @@ function bindEditButtons(editButton){
 				 if(req.status >= 200 && req.status < 400){
 					 var response = JSON.parse(req.response);
 					 //console.log(response);
-
+					//get stuff from the form and add it to the POST.
 					document.getElementById('workoutId').value = response[0].id;
 					document.getElementById('workoutForm').textContent = "Edit Exercise:";
 					console.log(response);
