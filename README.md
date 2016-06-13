@@ -37,11 +37,15 @@ Intro to Web Development through JS.
 <img src="https://github.com/knsy/cs290/blob/master/week%2008/01%20HowToSite/screenshots/screenshot01.png" align="left" width="46%" >
 <img src="https://github.com/knsy/cs290/blob/master/week%2008/01%20HowToSite/screenshots/screenshot02.png" align="right" width="46%" >
 
+
+
 # Week 10
 
 
 *Summary:* Single page application that works with a database.
 
 *Result:* A simple application for tracking workouts. Keeps all the information in a MySql database and uses AJAX to update and pull data from the server.
+
+![Screenshot 1](https://github.com/knsy/cs290/blob/master/week%2010/02_WorkoutTracker/screenshots/WorkoutTracker01.jpg "Screenshot 1")
 
 
