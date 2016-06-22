@@ -34,8 +34,9 @@ Intro to Web Development through JS.
 
 *Result:* A full website based on Handlebars templates that discusses basic usage of imgur API and dynamically gets random images from it.
 
-<img src="https://github.com/knsy/cs290/blob/master/week%2008/01%20HowToSite/screenshots/screenshot02.png" align="left" width="46%" >
-<img src="https://github.com/knsy/cs290/blob/master/week%2008/01%20HowToSite/screenshots/screenshot01.png" align="right" width="46%" >
+|Screenshot Page 1 | Screenshot Page 2 |
+|:------------------:|:------------------:|
+|![Screenshot 1](https://github.com/knsy/cs290/blob/master/week%2008/01%20HowToSite/screenshots/screenshot02.png) | ![Screenshot 2](https://github.com/knsy/cs290/blob/master/week%2008/01%20HowToSite/screenshots/screenshot01.png)|
 
 
 
